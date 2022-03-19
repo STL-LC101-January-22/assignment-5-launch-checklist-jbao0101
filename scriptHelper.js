@@ -4,17 +4,17 @@
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
    // Here is the HTML formatting for our mission target div.
    
-                // document.getElementById("missionTarget").style.innerHTML = 
-                // <h2>Mission Destination</h2>
-                // <ol>
-                //     <li>Name: </li>
-                //     <li>Diameter: </li>
-                //     <li>Star: ${star}</li>
-                //     <li>Distance from Earth: </li>
-                //     <li>Number of Moons: </li>
-                // </ol>
-                // <img src=""></img>
-   
+                document.getElementById("missionTarget").style.innerHTML =
+                `<h2>Mission Destination</h2>
+                <ol>
+                    <li>Name: ${name}</li>
+                    <li>Diameter: ${diameter}</li>
+                    <li>Star: ${star}</li>
+                    <li>Distance from Earth: ${distance}</li>
+                    <li>Number of Moons: ${moons}</li>
+                </ol>
+                <img src="${imageUrl}"></img>`
+                
 }
 
 function validateInput(testInput) {
@@ -31,20 +31,20 @@ function validateInput(testInput) {
 function formSubmission(pilot, copilot, fuelLevel, cargoLevel) {
    if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty"){
     alert("All fields required!");
-    event.preventDefault()
+    this.event.preventDefault()
    } 
    else if (validateInput(pilot) === "Is a Number") {
        alert("Pilot input must be a string!")
-       event.preventDefault()
+       this.event.preventDefault()
    } else if (validateInput(copilot) === "Is a Number") {
        alert("Copilot input must be a string!")
-       event.preventDefault()
+       this.event.preventDefault()
    } else if (validateInput(fuelLevel) === "Not a Number") {
        alert("Fuel Level input must be a number!")
-       event.preventDefault()
+       this.event.preventDefault()
    } else if (validateInput(cargoLevel) === "Not a Number") {
        alert("Cargo Level input must be a number!")
-       event.preventDefault()
+       this.event.preventDefault()
    }
 }
 
@@ -52,8 +52,7 @@ async function myFetch() {
     let planetsReturned;
 
     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
-        let planetsList = response.json()
-        return planetsList
+        return response.json()
         });
 
     return planetsReturned;

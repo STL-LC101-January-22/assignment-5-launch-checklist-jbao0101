@@ -1,9 +1,11 @@
 // Write your JavaScript code here!
 // const scriptHelper = require("./scriptHelper.js");
 
-// const { pickPlanet } = require("./scriptHelper");
+const { addDestinationInfo } = require("./scriptHelper");
 
-// const { validateInput } = require("./scriptHelper");
+const { pickPlanet } = require("./scriptHelper");
+
+const { validateInput } = require("./scriptHelper");
 
 window.addEventListener("load", function() {
 
@@ -15,18 +17,19 @@ window.addEventListener("load", function() {
         let cargoLevel = document.querySelector("input[name=cargoMass]").value;
 
         formSubmission(pilot, copilot, fuelLevel, cargoLevel)
-        this.event.preventDefault()
 
         if (Number(fuelLevel) < 10000){
             document.getElementById("faultyItems").style.visibility = "visible"
             document.getElementById("fuelStatus").innerText = "There is not enough fuel for the journey."
             document.getElementById("launchStatus").innerText = "Shuttle NOT ready for launch."
             document.getElementById("launchStatus").style.color = "red"
+            event.preventDefault()
         } else if (Number(cargoLevel) > 10000){
             document.getElementById("faultyItems").style.visibility = "visible"
             document.getElementById("cargoStatus").innerText = "There is too much mass for the shuttle to take off."
             document.getElementById("launchStatus").innerText = "Shuttle NOT ready for launch."
             document.getElementById("launchStatus").style.color = "red"
+            event.preventDefault()
         } else {
             document.getElementById("launchStatus").innerText = "Shuttle is ready for launch."
             document.getElementById("launchStatus").style.color = "green"
@@ -40,7 +43,8 @@ window.addEventListener("load", function() {
        listedPlanets = result;
    }).then(function () {
        // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
-        pickPlanet(listedPlanets)
+        let planet = pickPlanet(listedPlanets)
+        addDestinationInfo(document, planet.name, planet.diameter, planet.star, planet.distance, planet.moon, planet.imageUrl)
    })
    
 });
