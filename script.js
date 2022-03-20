@@ -12,7 +12,7 @@ window.addEventListener("load", function() {
         
         list.style.visibility = "hidden";
 
-        formSubmission(pilot, copilot, fuelLevel, cargoLevel)
+        formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel)
 
         if (Number(fuelLevel) < 10000){
             document.getElementById("faultyItems").style.visibility = "visible"
