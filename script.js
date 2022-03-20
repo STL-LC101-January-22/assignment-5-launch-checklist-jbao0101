@@ -13,23 +13,8 @@ window.addEventListener("load", function() {
         let cargoLevel = document.querySelector("input[name=cargoMass]").value;
 
         formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel)
+        event.preventDefault();
 
-        if (Number(fuelLevel) < 10000){
-            document.getElementById("faultyItems").style.visibility = "visible"
-            document.getElementById("fuelStatus").innerText = "There is not enough fuel for the journey."
-            document.getElementById("launchStatus").innerText = "Shuttle NOT ready for launch."
-            document.getElementById("launchStatus").style.color = "red"
-            event.preventDefault()
-        } else if (Number(cargoLevel) > 10000){
-            document.getElementById("faultyItems").style.visibility = "visible"
-            document.getElementById("cargoStatus").innerText = "There is too much mass for the shuttle to take off."
-            document.getElementById("launchStatus").innerText = "Shuttle NOT ready for launch."
-            document.getElementById("launchStatus").style.color = "red"
-            event.preventDefault()
-        } else {
-            document.getElementById("launchStatus").innerText = "Shuttle is ready for launch."
-            document.getElementById("launchStatus").style.color = "green"
-        }
     });
 
    let listedPlanets;
