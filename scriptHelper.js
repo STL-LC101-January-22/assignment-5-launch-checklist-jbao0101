@@ -48,21 +48,25 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    }
    
    if (Number(fuelLevel) < 10000){
-    document.getElementById("faultyItems").style.visibility = "visible"
-    document.getElementById("fuelStatus").innerText = "There is not enough fuel for the journey."
-    document.getElementById("launchStatus").innerText = "Shuttle NOT ready for launch."
-    document.getElementById("launchStatus").style.color = "red"
-    this.event.preventDefault()
-} else if (Number(cargoLevel) > 10000){
-    document.getElementById("faultyItems").style.visibility = "visible"
-    document.getElementById("cargoStatus").innerText = "There is too much mass for the shuttle to take off."
-    document.getElementById("launchStatus").innerText = "Shuttle NOT ready for launch."
-    document.getElementById("launchStatus").style.color = "red"
-    this.event.preventDefault()
-} else {
-    document.getElementById("launchStatus").innerText = "Shuttle is ready for launch."
-    document.getElementById("launchStatus").style.color = "green"
-}
+        document.getElementById("faultyItems").style.visibility = "visible"
+        document.getElementById("fuelStatus").innerText = "There is not enough fuel for the journey."
+        document.getElementById("launchStatus").innerText = "Shuttle NOT ready for launch."
+        document.getElementById("launchStatus").style.color = "red"
+        this.event.preventDefault()
+    } else if (Number(cargoLevel) > 10000){
+        document.getElementById("faultyItems").style.visibility = "visible"
+        document.getElementById("cargoStatus").innerText = "There is too much mass for the shuttle to take off."
+        document.getElementById("launchStatus").innerText = "Shuttle NOT ready for launch."
+        document.getElementById("launchStatus").style.color = "red"
+        this.event.preventDefault()
+    } else {
+        document.getElementById("launchStatus").innerText = "Shuttle is ready for launch."
+        document.getElementById("launchStatus").style.color = "green"
+    }
+
+    document.getElementById("pilotStatus").innerText = `${pilot} is ready for launch`
+    document.getElementById("copilotStatus").innerText = `${copilot} is ready for launch`
+
 
 }
 
