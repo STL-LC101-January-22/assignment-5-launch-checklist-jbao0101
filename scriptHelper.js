@@ -32,8 +32,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty"){
     alert("All fields required!");
     this.event.preventDefault()
-   } 
-   else if (validateInput(pilot) === "Is a Number") {
+   } else if (validateInput(pilot) === "Is a Number") {
        alert("Pilot input must be a string!")
        this.event.preventDefault()
    } else if (validateInput(copilot) === "Is a Number") {
@@ -52,16 +51,17 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         document.getElementById("fuelStatus").innerText = "Fuel level too low for launch"
         document.getElementById("launchStatus").innerText = "Shuttle Not Ready for Launch"
         document.getElementById("launchStatus").style.color = "rgb(199, 37, 78)"
-    } else if(Number(fuelLevel) < 10000){
-        document.getElementById("fuelStatus").innerText = "Fuel level high enough for launch"
-    } else if (Number(cargoLevel) > 10000){
+    } else if (Number(cargoLevel) >= 10000){
         document.getElementById("faultyItems").style.visibility = "visible"
         document.getElementById("cargoStatus").innerText = "Cargo mass too heavy for launch"
         document.getElementById("launchStatus").innerText = "Shuttle Not Ready for Launch"
         document.getElementById("launchStatus").style.color = "rgb(199, 37, 78)"
-    } else {
+    } else if (Number(fuelLevel) >= 10000 && Number(cargoLevel) < 10000){
+        list.style.visibility = "visible"
         document.getElementById("launchStatus").innerText = "Shuttle is ready for launch."
         document.getElementById("launchStatus").style.color = "rgb(65, 159, 106)"
+        document.getElementById("fuelStatus").innerText = "Fuel level high enough for launch"
+        document.getElementById("cargoStatus").innerText = "Cargo mass low enough for launch"
     }
 
     document.getElementById("pilotStatus").innerText = `Pilot ${pilot} is ready for launch`
